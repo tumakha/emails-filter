@@ -13,6 +13,10 @@ Go to root project directory and run command
 
 ## Run application
 
-Go to target/ directory and run command
+From root project directory
+
+    java -jar target/emails-filter.jar 
+
+From target/ directory
 
     java -jar emails-filter.jar ../emails.txt ../domains.txt
