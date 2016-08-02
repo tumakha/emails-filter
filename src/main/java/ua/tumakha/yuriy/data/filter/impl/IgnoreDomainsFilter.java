@@ -18,7 +18,7 @@ class IgnoreDomainsFilter {
 
 
     boolean isAllowedEmail(String email) {
-        return domains.stream().allMatch(domain -> !(email.isEmpty() || email.endsWith("@" + domain)));
+        return domains.stream().allMatch(domain -> !email.endsWith("@" + domain));
     }
 
 }

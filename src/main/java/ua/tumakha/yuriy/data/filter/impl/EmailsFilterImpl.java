@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -34,7 +35,7 @@ public class EmailsFilterImpl implements EmailsFilter {
         final IgnoreDomainsFilter domainsFilter = new IgnoreDomainsFilter(domains);
 
         try (Stream<String> filteredEmails = Files.lines(emailsFile)
-                .map(String::trim).filter(domainsFilter::isAllowedEmail)) {
+                .map(String::trim).filter(not(String::isEmpty)).filter(domainsFilter::isAllowedEmail)) {
             createDirectoriesForFile(outputFile);
             filteredEmailsCount = 0;
             try (BufferedWriter writer = Files.newBufferedWriter(outputFile, StandardOpenOption.CREATE)) {
@@ -68,6 +69,10 @@ public class EmailsFilterImpl implements EmailsFilter {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
+    }
+
+    private <T> Predicate<T> not(Predicate<T> p) {
+        return p.negate();
     }
 
 }
