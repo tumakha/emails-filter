@@ -15,4 +15,4 @@ Go to root project directory and run command
 
 Go to target/ directory and run command
 
-    java -jar emails-filter.jar emails.txt domains.txt
+    java -jar emails-filter.jar ../emails.txt ../domains.txt
