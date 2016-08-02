@@ -2,7 +2,6 @@ package ua.tumakha.yuriy.data.filter.impl;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
